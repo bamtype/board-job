@@ -1,14 +1,26 @@
 !!!
 %html
 %head
-	%title Bam's Jobs Board
+	%title Ruby on Rails Jobs
 	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-	= javascript_include_tag 'application', 'data-turbolinks-track' => true 
+	= javascript_include_tag 'application', 'data-turbolinks-track' => true
 	= csrf_meta_tags
 
 %body
-	- Category.all.each do |category|
-		= link_to category.name, jobs_path(category: category.name)
-	= yield 
-
-
+	%nav.navbar.navbar-default
+		.container
+			.navbar-brand Bam's Jobs
+			= link_to image_tag(image_path("mints.jpg")), "/www.facebook.com"
+			%ul.nav.navbar-nav
+				%li= link_to "ALL JOBS", root_path
+				- Category.all.each do |category|
+					%li= link_to category.name, jobs_path(category: category.name)
+			= link_to "New Job", new_job_path, class: "navbar-text navbar-right navbar-link"
+	.container
+		.col-md-6.col-md-offset-3
+			= yield
+%footer
+	%nav.navbar.navbar-default
+		.container
+			.navbar-brand1
+				%h2  AmsterBam - Jobs For Life
