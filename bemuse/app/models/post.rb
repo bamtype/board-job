@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
+  attr_accessor :image_file_name
+  attr_accessor :image_content_type
+  attr_accessor :image_file_size
+  attr_accessor :image_updated_at
 	acts_as_votable
    belongs_to :user
    has_many :comments
@@ -7,8 +11,4 @@ class Post < ActiveRecord::Base
  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
    has_attached_file :photo
 
-  # attr_accessor :image_file_name
-  # attr_accessor :image_content_type
-  # attr_accessor :image_file_size
-  # attr_accessor :image_updated_at
 end
